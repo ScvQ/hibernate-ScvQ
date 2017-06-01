@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+
+	<class name="com.icss.hibernate.model.entity.Product" table="t_product">
+		
+		
+		<id name="id" column="c_id" type="java.lang.String" length="32">
+			<generator class="uuid"/>
+		</id>
+		
+		<property name="name" column="c_name" type="java.lang.String" />
+		<property name="price" column="c_price" type="java.lang.Double" />
+		
+		<many-to-one name="productType" class="com.icss.hibernate.model.entity.ProductType" 
+             column="c_product_type_id" cascade="all">
+        </many-to-one>
+		
+	</class>
+
+
+</hibernate-mapping>

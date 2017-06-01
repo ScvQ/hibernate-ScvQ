@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+
+	<class name="com.icss.hibernate.model.entity.User" table="t_user">
+		
+		<id name="id" column="c_id" type="java.lang.String" length="32">
+			<generator class="uuid"/>
+		</id>
+		<property name="name" column="c_name" type="java.lang.String" length="16" />
+		<property name="age" column="c_age" type="java.lang.Integer" length="3" />
+		<set name="order" inverse="true" cascade="all">
+           <key column="c_user_id" ></key>
+           <one-to-many class="com.icss.hibernate.model.entity.Order"/>
+        </set>
+	</class>
+
+
+</hibernate-mapping>

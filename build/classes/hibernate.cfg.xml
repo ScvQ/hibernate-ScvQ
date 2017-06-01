@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+
+<!--声明Hibernate配置文件的开始-->
+<hibernate-configuration>
+
+	<!--表明以下的配置是针对session-factory配置的，SessionFactory是Hibernate中的一个类，这个类主要负责保存HIbernate的配置信息，以及对Session的操作-->   
+	<session-factory>
+		
+		<!-- 必须属性 Start -->
+		
+		<!-- 数据库用户名 -->
+		<property name="hibernate.connection.username">root</property>
+		<!-- 数据库密码 -->
+		<property name="hibernate.connection.password">root</property>
+		<!--配置数据库的驱动程序，Hibernate在连接数据库时，需要用到数据库的驱动程序-->   
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<!--设置数据库的连接url:jdbc:mysql://localhost/hibernate,其中localhost表示mysql服务器名称，此处为本机, hibernate是数据库名-->    
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/zezeze?characterEncoding=utf-8</property>	
+		<!--hibernate.dialect 只是Hibernate使用的数据库方言,就是要用Hibernate连接那种类型的数据库服务器。-->   
+		<property name="dialect">
+			org.hibernate.dialect.MySQLDialect
+		</property>
+		
+		<!-- 必须属性 End -->
+		
+		<!-- 数据库连接池配置 Start -->
+		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+		<!--连接池中保留的最大连接数。默认: 15 -->
+		<property name="hibernate.c3p0.max_size">20</property>
+		<!--连接池中保留的最小连接数。 -->
+        <property name="hibernate.c3p0.min_size">5</property>
+        <!--当连接池用完时客户端调用getConnection()后等待获取新连接的时间，超时后将抛出
+			SQLException,如设为0则无限期等待。单位毫秒。Default: 0 -->
+        <property name="hibernate.c3p0.timeout">120</property>
+        <!-- 自动创建测试表，以用来证明Hibernate初始化成功 -->
+        <!-- <property name="automaticTestTable">Test</property> -->
+        <!--JDBC的标准参数，用以控制数据源内加载的PreparedStatements数量。但由于预缓存的statements 属于单个connection而不是整个连接池。所以设置这个参数需要考虑到多方面的因素。 
+			如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0 -->
+        <property name="hibernate.c3p0.max_statements">0</property>
+         <!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
+        <property name="hibernate.c3p0.idle_test_period">18000</property>
+        <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+        <property name="hibernate.c3p0.acquire_increment">3</property>
+        <!--因性能消耗大,请只在需要的时候使用它。如果设为true那么在每个connection提交的 时候都将校验其有效性。建议使用idleConnectionTestPeriod或automaticTestTable 
+			等方法来提升连接测试的性能。Default: false -->
+        <property name="hibernate.c3p0.testConnectionOnCheckout">false</property>
+        <!--最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+        <property name="hibernate.c3p0.maxIdleTime">25000</property>
+		<!-- 数据库连接池配置 End -->
+		
+		<!-- 允许获取当前线程中的Session，即可以使用currentSession -->
+		<!-- 本地事务 -->
+		<property name="hibernate.current_session_context_class">thread</property>
+		<!-- 全局事务 -->
+		<!-- <property name="hibernate.current_session_context_class">jta</property> -->
+		
+		<!--是否在后台显示Hibernate用到的SQL语句，开发时设置为true，便于差错，程序运行时可以在Eclipse的控制台显示Hibernate的执行Sql语句。项目部署后可以设置为false，提高运行效率-->
+		<property name="show_sql">true</property>
+		<!-- 格式化sql语句 -->
+		<property name="hibernate.format_sql">true</property>  
+		
+		<!-- 设定表生成策略 create为自动创建表（于tomcat启动时） update只对表增删改差，不创建表    none -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		
+        <!--jdbc.fetch_size是指Hibernate每次从数据库中取出并放到JDBC的Statement中的记录条数。Fetch Size设的越大，读数据库的次数越少，速度越快，Fetch Size越小，读数据库的次数越多，速度越慢-->   
+        <property name="jdbc.fetch_size">50</property>   
+        <!--jdbc.batch_size是指Hibernate批量插入,删除和更新时每次操作的记录数。Batch Size越大，批量操作的向数据库发送Sql的次数越少，速度就越快，同样耗用内存就越大-->   
+        <property name="jdbc.batch_size">23</property>   
+        <!--jdbc.use_scrollable_resultset是否允许Hibernate用JDBC的可滚动的结果集。对分页的结果集。对分页时的设置非常有帮助   *****-->   
+        <property name="jdbc.use_scrollable_resultset">false</property>
+        <!--connection.useUnicode连接数据库时是否使用Unicode编码-->   
+        <property name="Connection.useUnicode">true</property>   
+        <!--connection.characterEncoding连接数据库时数据的传输字符集编码方式，最好设置为utf-8，用gb2312有的字符不全-->   
+    	<property name="connection.characterEncoding">utf-8</property>        
+          
+		<!--映射文件 -->
+		<mapping resource="com/icss/hibernate/model/entity/User.hbm.xml" />
+		<mapping resource="com/icss/hibernate/model/entity/Order.hbm.xml" />
+		<mapping resource="com/icss/hibernate/model/entity/Product.hbm.xml" />
+		<mapping resource="com/icss/hibernate/model/entity/ProductType.hbm.xml" />
+		
+	</session-factory>
+	
+</hibernate-configuration>
