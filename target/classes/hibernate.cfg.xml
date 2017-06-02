@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/hibernate?characterEncoding=utf-8</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>
+		<property name="connection.characterEncoding">utf8</property>
+		
+		<property name="dialect">org.hibernate.dialect.MySQL57InnoDBDialect</property>
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property> 
+		<property name="hbm2ddl.auto">update</property>
+		
+		<!-- one2one 主键关联 -->
+		<!-- <mapping resource="cn/spiderpig/xml/one2one/one/Person.hbm.xml" />
+		<mapping resource="cn/spiderpig/xml/one2one/one/Car.hbm.xml" /> -->
+		<!-- 下面两个没有测试成功 -->
+		<!-- <mapping class="cn.spiderpig.annotation.one2one.one.Car"/>
+        <mapping class="cn.spiderpig.annotation.one2one.one.Person"/> -->
+		
+		<!-- one2one 单向外键关联 -->
+		<!-- <mapping resource="cn/spiderpig/xml/one2one/two/Person.hbm.xml" />
+        <mapping resource="cn/spiderpig/xml/one2one/two/Car.hbm.xml" /> -->
+        <!-- <mapping class="cn.spiderpig.annotation.one2one.two.Car"/>
+        <mapping class="cn.spiderpig.annotation.one2one.two.Person"/> -->
+        
+        <!-- one2one 双向外键关联 -->
+        <!-- <mapping resource="cn/spiderpig/xml/one2one/three/Person.hbm.xml" />
+        <mapping resource="cn/spiderpig/xml/one2one/three/Car.hbm.xml" /> -->
+        <!-- <mapping class="cn.spiderpig.annotation.one2one.three.Car"/>
+        <mapping class="cn.spiderpig.annotation.one2one.three.Person"/> -->
+        
+        <!-- one2many 单向一对多 -->
+        <mapping resource="cn/spiderpig/xml/one2many/one/User.hbm.xml" />
+        <mapping resource="cn/spiderpig/xml/one2many/one/Car.hbm.xml" />
+        
+        <!-- one2many 单向多对一 -->
+        <mapping resource="cn/spiderpig/xml/one2many/two/User.hbm.xml" />
+        <mapping resource="cn/spiderpig/xml/one2many/two/Car.hbm.xml" />
+        
+        <!-- one2many 双向一对多 -->
+        <!-- <mapping resource="cn/spiderpig/xml/one2many/three/User.hbm.xml" />
+        <mapping resource="cn/spiderpig/xml/one2many/three/Car.hbm.xml" /> -->
+        
+        <!-- many2many -->
+        <!-- <mapping resource="cn/spiderpig/xml/many2many/Student.hbm.xml" />
+        <mapping resource="cn/spiderpig/xml/many2many/Teacher.hbm.xml" /> -->
+        
+	</session-factory>
+</hibernate-configuration>

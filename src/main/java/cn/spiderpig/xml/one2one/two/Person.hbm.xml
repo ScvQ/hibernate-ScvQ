@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.spiderpig.xml.one2one.two.Person" table="t_person">
+	
+		<id name="id" type="java.lang.Integer" column="c_id" length="32">
+			<generator class="identity"></generator>
+		</id>
+		<property name="name" type="java.lang.String" column="c_name"
+			length="12"></property>
+
+		<one-to-one name="car" class="cn.spiderpig.xml.one2one.two.Car" cascade="all" property-ref="person">
+		</one-to-one>
+
+	</class>
+</hibernate-mapping> 

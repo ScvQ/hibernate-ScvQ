@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC	
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.spiderpig.xml.one2many.three.User" table="user">
+		<id name="id" type="java.lang.Integer" column="id" length="32">
+			<generator class="identity"></generator>
+		</id>
+		<property name="username" type="java.lang.String" column="username"
+			length="12"></property>
+		<property name="password" type="java.lang.String" column="password"
+			length="12"></property>
+		<set name="cars" inverse="true" cascade="all">
+			<key column="user_id"></key>
+			<one-to-many class="cn.spiderpig.xml.one2many.three.Car" />
+		</set>
+	</class>
+</hibernate-mapping> 
